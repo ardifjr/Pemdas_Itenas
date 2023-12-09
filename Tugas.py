@@ -5,36 +5,38 @@ data = {'Nama': ['John', 'Jane', 'Bob', 'Alice'],
         'Gaji': [50000, 60000, 70000, 55000]}
 
 df = pd.DataFrame(data)
-
+print("Data Awal:")
+print(df)
+print("\n")
 # Pertanyaan 1:
+
 # Gunakan loop for dan fungsi lambda untuk menghitung gaji setiap karyawan setelah diberikan peningkatan sebesar 5% dari gaji saat ini.
-
-df['Gaji'] = df['Gaji'].apply(lambda x: x * 1.05)
-
+df['Naik Gaji 5%'] = df.apply(lambda row: row['Gaji'] * 1.05, axis=1)
 # Pertanyaan 2:
+
 # Setelah perubahan dilakukan, tampilkan DataFrame yang sudah diperbarui dan berikan ringkasan perubahan yang telah terjadi.
-print("DataFrame setelah peningkatan gaji 5%:")
+print("Data dengan Kolom Baru 'Naik Gaji 5%':")
 print(df)
 
-# Ringkasan perubahan
 print("\nRingkasan Perubahan:")
-print("Gaji setiap karyawan telah ditingkatkan sebesar 5%.")
-
+print("Semua karyawan naik gaji sebesar 5%.")
+print()
 # Pertanyaan 3:
-# Gunakan loop for lagi untuk mengevaluasi karyawan yang usianya di atas 30 tahun.
-# Jika usia karyawan di atas 30, berikan peningkatan tambahan sebesar 2% dari gaji saat ini menggunakan fungsi lambda.
-df['Gaji'] = df.apply(lambda row: row['Gaji'] * 1.02 if row['Usia'] > 30 else row['Gaji'], axis=1)
+
+# Gunakan loop for lagi untuk mengevaluasi karyawan yang usianya di atas 30 tahun. Jika usia karyawan di atas 30, berikan peningkatan tambahan sebesar 2% dari gaji saat ini menggunakan fungsi lambda.
+df['Gaji Tambahan'] = df.apply(lambda row: row['Gaji'] * 0.02 if row['Usia'] > 30 else 0, axis=1)
 
 # Pertanyaan 4:
+
 # Tampilkan DataFrame yang sudah diperbarui setelah peningkatan gaji tambahan dan berikan ringkasan hasilnya.
-print("\nDataFrame setelah peningkatan tambahan untuk karyawan di atas 30 tahun:")
+print("Data dengan Kolom Baru 'Gaji Tambahan' untuk Usia > 30 Tahun:")
 print(df)
 
-# Ringkasan perubahan
-print("\nRingkasan Perubahan:")
-print("Karyawan yang usianya di atas 30 tahun mendapatkan peningkatan gaji tambahan sebesar 2%.")
-
-
+print("\nRingkasan Hasil Peningkatan Gaji Tambahan:")
+print("Karyawan di atas usia 30 tahun menerima gaji tambahan sebesar 2% dari gaji saat ini.")
+print()
+df['Total Gaji'] = df['Naik Gaji 5%'] + df['Gaji Tambahan']
+print(df)
 # ---------------------------- #
 # Buat Branch Baru pada repository github berikut dengan format KELAS_NRP_NAMA
 # https://github.com/diashfirdaus-cyber/Pemdas_Itenas.git
