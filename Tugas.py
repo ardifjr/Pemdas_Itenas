@@ -10,11 +10,14 @@ print(df)
 print("\n")
 # Pertanyaan 1:
 
-# Gunakan loop for dan fungsi lambda untuk menghitung gaji setiap karyawan setelah diberikan peningkatan sebesar 5% dari gaji saat ini.
-df['Naik Gaji 5%'] = df.apply(lambda row: row['Gaji'] * 1.05, axis=1)
+# Gunakan loop for dan fungsi lambda untuk menghitung gaji setiap karyawan setelah diberikan
+# peningkatan sebesar 5% dari gaji saat ini.
+for a, row in df.iterrows():
+        df.at[a, 'Naik Gaji 5%'] = row['Gaji'] * 1.05
 # Pertanyaan 2:
 
-# Setelah perubahan dilakukan, tampilkan DataFrame yang sudah diperbarui dan berikan ringkasan perubahan yang telah terjadi.
+# Setelah perubahan dilakukan, tampilkan DataFrame yang sudah diperbarui dan berikan 
+# ringkasan perubahan yang telah terjadi.
 print("Data dengan Kolom Baru 'Naik Gaji 5%':")
 print(df)
 
@@ -23,8 +26,11 @@ print("Semua karyawan naik gaji sebesar 5%.")
 print()
 # Pertanyaan 3:
 
-# Gunakan loop for lagi untuk mengevaluasi karyawan yang usianya di atas 30 tahun. Jika usia karyawan di atas 30, berikan peningkatan tambahan sebesar 2% dari gaji saat ini menggunakan fungsi lambda.
-df['Gaji Tambahan'] = df.apply(lambda row: row['Gaji'] * 0.02 if row['Usia'] > 30 else 0, axis=1)
+# Gunakan loop for lagi untuk mengevaluasi karyawan yang usianya di atas 30 tahun. 
+# Jika usia karyawan di atas 30, berikan peningkatan tambahan sebesar 2% dari gaji 
+# saat ini menggunakan fungsi lambda.
+for a, row in df.iterrows():
+        df.at[a, 'Gaji Tambahan'] = (lambda x: x * 0.02 if row['Usia'] > 30 else x)(row['Naik Gaji 5%'])
 
 # Pertanyaan 4:
 
